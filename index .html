@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result System</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .box {
+            background: white;
+            color: black;
+            padding: 20px;
+            margin: 30px auto;
+            width: 360px;
+            border-radius: 10px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px;
+            width: 85%;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📊 Student Result System</h1>
+    <h3>Total Marks = 555</h3>
+
+    <div class="box">
+        <input type="text" id="name" placeholder="Student Name"><br>
+
+        <input type="number" id="urdu" placeholder="Urdu (out of 75)"><br>
+        <input type="number" id="english" placeholder="English (out of 75)"><br>
+        <input type="number" id="chemistry" placeholder="Chemistry (out of 60)"><br>
+        <input type="number" id="math" placeholder="Math (out of 75)"><br>
+        <input type="number" id="physics" placeholder="Physics (out of 60)"><br>
+        <input type="number" id="computer" placeholder="Computer (out of 60)"><br>
+        <input type="number" id="islamiat" placeholder="Islamiat (out of 100)"><br>
+        <input type="number" id="quran" placeholder="Tarjuma-tul-Quran (out of 50)"><br>
+
+        <button onclick="calculateResult()">Show Result</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateResult() {
+            var name = document.getElementById("name").value;
+
+            var urdu = parseFloat(document.getElementById("urdu").value);
+            var english = parseFloat(document.getElementById("english").value);
+            var chemistry = parseFloat(document.getElementById("chemistry").value);
+            var math = parseFloat(document.getElementById("math").value);
+            var physics = parseFloat(document.getElementById("physics").value);
+            var computer = parseFloat(document.getElementById("computer").value);
+            var islamiat = parseFloat(document.getElementById("islamiat").value);
+            var quran = parseFloat(document.getElementById("quran").value);
+
+            if (
+                isNaN(urdu) || isNaN(english) || isNaN(chemistry) ||
+                isNaN(math) || isNaN(physics) || isNaN(computer) ||
+                isNaN(islamiat) || isNaN(quran)
+            ) {
+                document.getElementById("result").innerHTML = "Please enter all marks!";
+                return;
+            }
+
+            var total = urdu + english + chemistry + math + physics + computer + islamiat + quran;
+            var percentage = (total / 555) * 100;
+
+            var grade = "";
+
+            if (percentage >= 90) grade = "A+";
+            else if (percentage > 80) grade = "B++";
+            else if (percentage >= 80) grade = "A";
+            else if (percentage >= 70) grade = "B";
+            else if (percentage >= 60) grade = "C";
+            else if (percentage >= 50) grade = "D";
+            else grade = "Fail";
+
+            document.getElementById("result").innerHTML =
+                "Name: " + name + "<br><br>" +
+                "Total Marks: " + total + " / 555<br>" +
+                "Percentage: " + percentage.toFixed(1) + "%<br>" +
+                "Grade: " + grade;
+        }
+    </script>
+
+</body>
+</html>
