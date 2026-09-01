@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>APS Result Card</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #e8f5e9;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px gray;
+      border-top: 8px solid #0a5c2f;
+    }
+    img {
+      width: 90px;
+      margin-bottom: 5px;
+    }
+    h1 {
+      color: #0a5c2f;
+      margin: 5px;
+    }
+    p {
+      margin: 5px;
+    }
+    input {
+      width: 80px;
+      padding: 6px;
+      margin: 3px;
+      border: 1px solid #0a5c2f;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #0a5c2f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #084d28;
+    }
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+    }
+    th {
+      background: #0a5c2f;
+      color: white;
+    }
+    th, td {
+      border: 1px solid #0a5c2f;
+      padding: 6px;
+    }
+    .result {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #0a5c2f;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- LOGO -->
+  <img src="logo.png">
+
+  <!-- SCHOOL NAME -->
+  <h1>APSACS</h1>
+  <p>Army Public Schools & Colleges System</p>
+
+  <p>Name: <input type="text" id="name"></p>
+
+  <table>
+    <tr><th>Subject</th><th>Marks</th></tr>
+    <tr><td>Urdu (75)</td><td><input type="number" id="urdu"></td></tr>
+    <tr><td>English (75)</td><td><input type="number" id="english"></td></tr>
+    <tr><td>Math (75)</td><td><input type="number" id="math"></td></tr>
+    <tr><td>Physics (60)</td><td><input type="number" id="physics"></td></tr>
+    <tr><td>Chemistry (60)</td><td><input type="number" id="chemistry"></td></tr>
+    <tr><td>Computer (60)</td><td><input type="number" id="computer"></td></tr>
+    <tr><td>Islamiat (100)</td><td><input type="number" id="islamiat"></td></tr>
+    <tr><td>Tarjuma Quran (50)</td><td><input type="number" id="tq"></td></tr>
+  </table>
+
+  <button onclick="calculate()">Generate Result</button>
+  <button onclick="window.print()">Print</button>
+
+  <div class="result" id="output"></div>
+
+</div>
+
+<script>
+function calculate() {
+  let name = document.getElementById("name").value;
+
+  let urdu = +document.getElementById("urdu").value || 0;
+  let english = +document.getElementById("english").value || 0;
+  let math = +document.getElementById("math").value || 0;
+  let physics = +document.getElementById("physics").value || 0;
+  let chemistry = +document.getElementById("chemistry").value || 0;
+  let computer = +document.getElementById("computer").value || 0;
+  let islamiat = +document.getElementById("islamiat").value || 0;
+  let tq = +document.getElementById("tq").value || 0;
+
+  if (urdu>75 || english>75 || math>75 || physics>60 || chemistry>60 || computer>60 || islamiat>100 || tq>50) {
+    alert("❌ Marks exceed limit!");
+    return;
+  }
+
+  let total = urdu+english+math+physics+chemistry+computer+islamiat+tq;
+  let percent = (total/555)*100;
+
+  let grade = "";
+  if (percent >= 80) grade = "A+";
+  else if (percent >= 70) grade = "A";
+  else if (percent >= 60) grade = "B";
+  else grade = "C";
+
+  document.getElementById("output").innerHTML =
+    "Name: " + name + "<br>" +
+    "Total: " + total + " / 555<br>" +
+    "Percentage: " + percent.toFixed(2) + "%<br>" +
+    "Grade: " + grade;
+}
+</script>
+
+</body>
+</html>
