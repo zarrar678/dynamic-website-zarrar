@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marks Sheet</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f2f2f2;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      margin: 50px auto;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+    h1 {
+      color: darkblue;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>Marks Sheet</h1>
+
+  <p>Urdu: 75</p>
+  <p>English: 75</p>
+  <p>Math: 75</p>
+  <p>Physics: 60</p>
+  <p>Chemistry: 60</p>
+  <p>Computer: 60</p>
+  <p>Islamiat: 100</p>
+  <p>Tarjuma Tul Quran: 50</p>
+
+  <h2 id="total"></h2>
+  <h2 id="grade"></h2>
+</div>
+
+<script>
+  let total = 75+75+75+60+60+60+100+50;
+  let percent = (total / 555) * 100;
+  let grade = "";
+
+  if (percent >= 80) grade = "A+";
+  else if (percent >= 70) grade = "A";
+  else if (percent >= 60) grade = "B";
+  else grade = "C";
+
+  document.getElementById("total").innerText = "Total: " + total;
+  document.getElementById("grade").innerText = "Grade: " + grade;
+</script>
+
+</body>
+</html>
